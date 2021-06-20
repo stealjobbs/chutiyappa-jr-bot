@@ -47,7 +47,6 @@ playlistID = configDb['playlistID']
 parser = argparse.ArgumentParser()
 parser.add_argument('-t','--test',action = 'store_true', help = "Runs the test bot.")
 args = parser.parse_args()
-print(args.test)
 if args.test:
 	VERSION = configDb['VERSION_T']
 	BOT_TOKEN= configDb['BOT_TOKEN_T']
