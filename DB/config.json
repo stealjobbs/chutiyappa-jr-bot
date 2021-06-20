@@ -1,0 +1,20 @@
+{
+ "VERSION_T": "v1.0.69t",
+ "VERSION_R": "v1.0.69r",
+ "BOT_TOKEN_R": "",
+ "BOT_TOKEN_T": "1862139563:AAHbDkwloVDk6kk93600bKrOwAYRYs9tsm4",
+ "TO_CHAT_ID_R": 0,
+ "TO_CHAT_ID_T": -1001432047595,
+ "scope": "user-library-read playlist-modify-public",
+ "user": "username",
+ "redirect_uri": "http://localhost:8080",
+ "client_id": "spotify client id",
+ "client_secret": "spotify client secret id",
+ "playlistID": "Playlist id",
+ "SORRY_DAVE_GIF_R": "",
+ "SORRY_DAVE_GIF_T": "CgACAgUAAxkBAAMUYM7r2BV27sT31SJnBb25ggRNKSgAAncCAAKF8_FVtMobJydg5rgfBA",
+ "BYE_GIF_R": "",
+ "BYE_GIF_T": "CgACAgUAAxkBAAMVYM7sCcDD32Y7fKv4jexme9uOAgwAAngCAAKF8_FV_W_f-DdFvAgfBA",
+ "DAISY_OGG_R": "",
+ "DAISY_OGG_T": "AwACAgUAAxkBAAMWYM7sSInYihnoO96M6YJ3aij7udEAAoUCAAKF8_FVbq__3eZ5H0IfBA"
+}
