@@ -1,5 +1,5 @@
 # chutiyappa-jr-bot
-Sentient telegram bot made to ego hurt my friends and more
+Sentient telegram bot made to ego hurt my friends.
 
 NOTE: Run the test bot while developing using the argment -t.
 
