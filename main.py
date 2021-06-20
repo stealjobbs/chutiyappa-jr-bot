@@ -13,7 +13,7 @@ import argparse
 import sys
 
 
-#Enivornment Constants/Variables
+#Configs
 
 
 strLine = '-----------------------------------'
@@ -71,9 +71,11 @@ else:
 		print("ChutiyappaTest Online")
 	else:
 		print("ChutiyappaJr Online")
-################################## Exclusively Backend #####################################
-	
 
+
+
+
+################################## Exclusively Backend #####################################
 	
 
 def metaData(update, context):
@@ -88,10 +90,6 @@ def fromSteve(update,context):
 
 def sendAnimation(update,context):
 	context.bot.send_animation(update.message.chat_id, BYE_GIF)
-
-
-
-
 
 
 
