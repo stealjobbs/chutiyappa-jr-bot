@@ -41,7 +41,7 @@ user = configDb['user']
 redirect_uri = configDb['redirect_uri']
 client_id = configDb['client_id']
 client_secret = configDb['client_secret']
-playlistID = configDb['playlistID']
+playlistID = configDb['playlistID_R']
 
 
 parser = argparse.ArgumentParser()
@@ -54,6 +54,7 @@ if args.test:
 	SORRY_DAVE_GIF = configDb['SORRY_DAVE_GIF_T']
 	BYE_GIF = configDb['BYE_GIF_T']
 	DAISY_OGG = configDb['DAISY_OGG_T']
+	playlistID = configDb['playlistID_T']
 	print('ChutiyappaTest %s'%VERSION)
 else : print('ChutiyappaJr %s'%VERSION)
 	
