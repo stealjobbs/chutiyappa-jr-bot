@@ -1,7 +1,9 @@
 # chutiyappa-jr-bot
 Sentient telegram bot made to ego hurt my friends.
 
-NOTE: Run the test bot while developing using the argment -t.
+Best practice: Create your own tele bot, update config files and you are good to goooo.
+
+NOTE: Run the test bot while developing using the argment -t. (WONT Work if I already have its instance running)
 
 python3 main.py -t
 
