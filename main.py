@@ -25,6 +25,7 @@ infoDb ={}
 profilesDb = {}
 configDb ={}
 updater = None
+sp = None
 
 
 with open('DB/config.json','r') as infile:
@@ -43,36 +44,7 @@ client_id = configDb['client_id']
 client_secret = configDb['client_secret']
 playlistID = configDb['playlistID_R']
 
-
-parser = argparse.ArgumentParser()
-parser.add_argument('-t','--test',action = 'store_true', help = "Runs the test bot.")
-args = parser.parse_args()
-if args.test:
-	VERSION = configDb['VERSION_T']
-	BOT_TOKEN= configDb['BOT_TOKEN_T']
-	TO_CHAT_ID = configDb['TO_CHAT_ID_T']
-	SORRY_DAVE_GIF = configDb['SORRY_DAVE_GIF_T']
-	BYE_GIF = configDb['BYE_GIF_T']
-	DAISY_OGG = configDb['DAISY_OGG_T']
-	playlistID = configDb['playlistID_T']
-	print('ChutiyappaTest %s'%VERSION)
-else : print('ChutiyappaJr %s'%VERSION)
 	
-try:
-	updater = Updater(BOT_TOKEN)
-	sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=client_id,
-												client_secret=client_secret,
-												redirect_uri=redirect_uri,
-												scope=scope))
-except :
-	print("Initialisation Failed. Exiting")
-	sys.exit()
-else:
-	if args.test:
-		print("ChutiyappaTest Online")
-	else:
-		print("ChutiyappaJr Online")
-
 
 
 
@@ -729,8 +701,43 @@ def sorryDave(update, context):
 
 def main():
 
+	
+	parser = argparse.ArgumentParser()
+	parser.add_argument('-t','--test',action = 'store_true', help = "Runs the test bot.")
+	args = parser.parse_args()
 
+	global sp
+	global VERSION 
+	global BOT_TOKEN
+	global TO_CHAT_ID
+	global SORRY_DAVE_GIF
+	global BYE_GIF
+	global DAISY_OGG
+	global playlistID 
+
+	if args.test:
+		VERSION = configDb['VERSION_T']
+		BOT_TOKEN= configDb['BOT_TOKEN_T']
+		TO_CHAT_ID = configDb['TO_CHAT_ID_T']
+		SORRY_DAVE_GIF = configDb['SORRY_DAVE_GIF_T']
+		BYE_GIF = configDb['BYE_GIF_T']
+		DAISY_OGG = configDb['DAISY_OGG_T']
+		playlistID = configDb['playlistID_T']
+		print(TO_CHAT_ID)
+		print('ChutiyappaTest %s'%VERSION)
+	else : print('ChutiyappaJr %s'%VERSION)
+
+	updater = Updater(BOT_TOKEN)
+	sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=client_id,
+												client_secret=client_secret,
+												redirect_uri=redirect_uri,
+												scope=scope))
 	dp = updater.dispatcher 
+
+	if args.test:
+		print("ChutiyappaTest Online")
+	else:
+		print("ChutiyappaJr Online")
 
 	dp.add_handler(CommandHandler('dogo', dogo))
 	dp.add_handler(CommandHandler('help', help))
