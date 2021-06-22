@@ -724,7 +724,6 @@ def main():
 		DAISY_OGG = configDb['DAISY_OGG_T']
 		playlistID = configDb['playlistID_T']
 		print(TO_CHAT_ID)
-		print('ChutiyappaTest %s'%VERSION)
 	else : print('ChutiyappaJr %s'%VERSION)
 
 	updater = Updater(BOT_TOKEN)
