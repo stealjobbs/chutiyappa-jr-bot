@@ -10,4 +10,4 @@ You will need to create a spotify developer account and create an app in order t
 
 DB folder contains database files
 
-Best practice: Create your own tele bot, update config files and you are good to goooo.
+Best practice: Create your own tele bot, update DB/config.json and you are good to goooo.
