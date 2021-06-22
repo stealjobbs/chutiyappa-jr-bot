@@ -1,1 +1,8 @@
-{"1": ["username"], "2": ["username"]}
+{
+ "1": [
+  "Top Level User's username"
+ ],
+ "2": [
+  "Subsequent access level usernames"
+ ]
+}
