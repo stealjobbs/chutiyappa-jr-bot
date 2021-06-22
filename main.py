@@ -723,7 +723,6 @@ def main():
 		BYE_GIF = configDb['BYE_GIF_T']
 		DAISY_OGG = configDb['DAISY_OGG_T']
 		playlistID = configDb['playlistID_T']
-		print(TO_CHAT_ID)
 	else : print('ChutiyappaJr %s'%VERSION)
 
 	updater = Updater(BOT_TOKEN)
