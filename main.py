@@ -723,19 +723,20 @@ def main():
 		BYE_GIF = configDb['BYE_GIF_T']
 		DAISY_OGG = configDb['DAISY_OGG_T']
 		playlistID = configDb['playlistID_T']
+		print('ChutiyappaTest %s'%VERSION)
 	else : print('ChutiyappaJr %s'%VERSION)
 
 	updater = Updater(BOT_TOKEN)
+	if args.test:
+		print("ChutiyappaTest Online")
+	else:
+		print("ChutiyappaJr Online")	
 	sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=client_id,
 												client_secret=client_secret,
 												redirect_uri=redirect_uri,
 												scope=scope))
 	dp = updater.dispatcher 
-
-	if args.test:
-		print("ChutiyappaTest Online")
-	else:
-		print("ChutiyappaJr Online")
+	print("Spotify initialised.")
 
 	dp.add_handler(CommandHandler('dogo', dogo))
 	dp.add_handler(CommandHandler('help', help))
