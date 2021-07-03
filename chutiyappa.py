@@ -141,8 +141,11 @@ def playlistAppender(songLink):
 
 	songID = []
 	songID.append(songLink)
+	print("Appended Song")
 	sp.user_playlist_remove_all_occurrences_of_tracks(user, playlistID, songID)
+	print("Removed duplicates")
 	sp.playlist_add_items(playlistID, songID)
+	print("Added song to playlist")
 
 
 #Sends The Curated Playlist

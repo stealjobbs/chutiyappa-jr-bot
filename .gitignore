@@ -2,3 +2,4 @@ tasks.py
 tasks2.py
 Tests.py
 .DS_Store
+.cache
