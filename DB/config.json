@@ -2,9 +2,9 @@
  "VERSION_T": "v1.0.69t",
  "VERSION_R": "",
  "BOT_TOKEN_R": "",
- "BOT_TOKEN_T": "1862139563:AAHbDkwloVDk6kk93600bKrOwAYRYs9tsm4",
+ "BOT_TOKEN_T": "",
  "TO_CHAT_ID_R": 0,
- "TO_CHAT_ID_T": -1001432047595, 
+ "TO_CHAT_ID_T": , 
  "scope": "user-library-read playlist-modify-public",
  "user": "spotiUsername",
  "redirect_uri": "http://localhost:8080",
@@ -13,9 +13,9 @@
  "playlistID_R": "",
  "playlistID_T": "",
  "SORRY_DAVE_GIF_R": "",
- "SORRY_DAVE_GIF_T": "CgACAgUAAxkBAAMUYM7r2BV27sT31SJnBb25ggRNKSgAAncCAAKF8_FVtMobJydg5rgfBA",
+ "SORRY_DAVE_GIF_T": "",
  "BYE_GIF_R": "",
- "BYE_GIF_T": "CgACAgUAAxkBAAMVYM7sCcDD32Y7fKv4jexme9uOAgwAAngCAAKF8_FV_W_f-DdFvAgfBA",
+ "BYE_GIF_T": "",
  "DAISY_OGG_R": "",
- "DAISY_OGG_T": "AwACAgUAAxkBAAMWYM7sSInYihnoO96M6YJ3aij7udEAAoUCAAKF8_FVbq__3eZ5H0IfBA"
+ "DAISY_OGG_T": ""
 }
