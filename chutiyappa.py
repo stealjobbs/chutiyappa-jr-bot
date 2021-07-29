@@ -11,6 +11,7 @@ import pickle
 from random import randint
 import argparse
 import sys
+import os
 
 
 #Configs
@@ -31,9 +32,14 @@ sp = None
 with open('DB/config.json','r') as infile:
 	configDb = json.load(infile)
 
+PORT = int(os.environ.get('PORT', 8443))
+HEROKU = os.environ.get('HEROKU','False')
+WEBHOOK_URL=configDb['WEBHOOK_URL']
 VERSION= configDb['VERSION_R']
 BOT_TOKEN = configDb['BOT_TOKEN_R'] 
-TO_CHAT_ID =configDb['TO_CHAT_ID_R']      
+BOT_DADDY = configDb['BOT_DADDY']
+TO_CHAN_ID =configDb['TO_CHAN_ID_R'] 
+TO_CHAT_ID=configDb['TO_CHAT_ID_R']     
 SORRY_DAVE_GIF = configDb['SORRY_DAVE_GIF_R']
 BYE_GIF = configDb['BYE_GIF_R']
 DAISY_OGG = configDb['DAISY_OGG_R']
@@ -43,8 +49,11 @@ redirect_uri = configDb['redirect_uri']
 client_id = configDb['client_id']
 client_secret = configDb['client_secret']
 playlistID = configDb['playlistID_R']
+UPDATE_MSG=configDb['UPDATE_MSG']
 
 	
+CLOUD_1 = "AgACAgUAAxkBAAIFHmEC6QXiJv-u4s5vB4dQYKS9FZpxAAK-rDEbyjwZVKaORwtyb5yNAQADAgADcwADIAQ"
+CLOUD_2 = "AgACAgUAAxkBAAIFH2EC6RhxMgdAmMRA-vPdJ4Krlv4BAAK_rDEbyjwZVB-TlJGSHXFWAQADAgADcwADIAQ"
 
 
 
@@ -53,13 +62,35 @@ playlistID = configDb['playlistID_R']
 
 def metaData(update, context):
 	print('META DATA:')
-	print(update.update_id)
-	print(update.channel_post)
+	print("Chat ID:",update.message.chat_id)
+	print("Update_ID:",update.update_id)
+	print("Channel Post:",update.channel_post)
 	
 
-def fromSteve(update,context):
-	print('From Steve:')
+def botDaddy(update,context):
+	print('From Bot Daddy')
 	print(update.message)
+	context.bot.send_photo(update.message.chat_id, CLOUD_GIF)
+
+def updateMsg(context):
+	config=None
+	if UPDATE_MSG == 1:
+		context.bot.send_photo(TO_CHAT_ID,CLOUD_1)
+		time.sleep(2)
+		context.bot.send_message(TO_CHAT_ID,"...")
+		time.sleep(2)
+		context.bot.send_message(TO_CHAT_ID,"...")
+		time.sleep(2)		
+		context.bot.send_photo(TO_CHAT_ID,CLOUD_2)
+	with open('DB/config.json', 'r') as infile:
+			config=json.load(infile)
+	config["UPDATE_MSG"]=0
+	with open('DB/config.json', 'w') as outfile:
+			json.dump(config, outfile, indent = 1)
+
+
+
+
 
 def sendAnimation(update,context):
 	context.bot.send_animation(update.message.chat_id, BYE_GIF)
@@ -96,18 +127,18 @@ def dogo(update, context) :
 
 #Forwards spotify links from the group to the channel
 def spotifyForward(update, context):
-	print('spotifyForward')
+	#print('spotifyForward')
 	link = update.message.text
 	if update.message.chat.type != 'private':
 		if link.find("open.spotify.com")!= -1:
 			if 'open.spotify.com/track' in link:
-				context.bot.forwardMessage(chat_id= TO_CHAT_ID ,
+				context.bot.forwardMessage(chat_id= TO_CHAN_ID ,
 											from_chat_id= update.message.chat_id,
 											message_id=update.message.message_id)
 				playlistAppender(link)
 			elif 'open.spotify.com/album' in link:
 				context.bot.send_message(update.message.chat_id, "Please limit to sharing tracks.\nYour album will be forwarded to the channel but won't be added to the playlist.")
-				context.bot.forwardMessage(chat_id= TO_CHAT_ID ,
+				context.bot.forwardMessage(chat_id= TO_CHAN_ID ,
 											from_chat_id= update.message.chat_id,
 											message_id=update.message.message_id)
 			#elif 'open.spotify.com/user' in link:
@@ -712,6 +743,7 @@ def main():
 	global sp
 	global VERSION 
 	global BOT_TOKEN
+	global TO_CHAN_ID
 	global TO_CHAT_ID
 	global SORRY_DAVE_GIF
 	global BYE_GIF
@@ -721,7 +753,8 @@ def main():
 	if args.test:
 		VERSION = configDb['VERSION_T']
 		BOT_TOKEN= configDb['BOT_TOKEN_T']
-		TO_CHAT_ID = configDb['TO_CHAT_ID_T']
+		TO_CHAN_ID = configDb['TO_CHAN_ID_T']
+		TO_CHAT_ID=configDb['TO_CHAT_ID_T']
 		SORRY_DAVE_GIF = configDb['SORRY_DAVE_GIF_T']
 		BYE_GIF = configDb['BYE_GIF_T']
 		DAISY_OGG = configDb['DAISY_OGG_T']
@@ -788,15 +821,23 @@ def main():
 	#dp.add_handler(CommandHandler('about' about))
 	
 	#dp.add_handler(MessageHandler(Filters.text, metaData))
-	dp.add_handler(MessageHandler(Filters.chat(218785074), fromSteve))
+	dp.add_handler(MessageHandler(Filters.chat(BOT_DADDY), botDaddy))
 	dp.add_handler(MessageHandler(Filters.command, sorryDave))
 	dp.add_handler(MessageHandler(Filters.text & ~Filters.command, spotifyForward))
 	dp.add_handler(MessageHandler(Filters.status_update.new_chat_members, newMember))
 	dp.add_handler(MessageHandler(Filters.status_update.left_chat_member, leftMember))
 	
 
-	
-	updater.start_polling()
+	if 'True' in HEROKU:
+		print("Starting Webhook Server")
+		updater.start_webhook(listen="0.0.0.0",
+	                          port=PORT,
+	                          url_path=BOT_TOKEN,
+	                          webhook_url=WEBHOOK_URL + BOT_TOKEN)
+	else:
+		print("Starting Polling Server")
+		updater.start_polling()
+	updateMsg(updater)
 	updater.idle()
 
 if __name__ == '__main__':

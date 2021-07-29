@@ -1,12 +1,14 @@
 {
  "VERSION_T": "v1.0.69t",
- "VERSION_R": "",
+ "VERSION_R": "v1.0.69r",
  "BOT_TOKEN_R": "",
  "BOT_TOKEN_T": "",
- "TO_CHAT_ID_R": 0,
- "TO_CHAT_ID_T": , 
+ "TO_CHAN_ID_R": null,
+ "TO_CHAN_ID_T": null,
+ "TO_CHAT_ID_R": null,
+ "TO_CHAT_ID_T": null,
  "scope": "user-library-read playlist-modify-public",
- "user": "spotiUsername",
+ "user": "",
  "redirect_uri": "http://localhost:8080",
  "client_id": "",
  "client_secret": "",
@@ -17,5 +19,8 @@
  "BYE_GIF_R": "",
  "BYE_GIF_T": "",
  "DAISY_OGG_R": "",
- "DAISY_OGG_T": ""
+ "DAISY_OGG_T": "",
+ "WEBHOOK_URL": "",
+ "BOT_DADDY": null,
+ "UPDATE_MSG": 0
 }
