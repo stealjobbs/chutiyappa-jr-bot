@@ -14,6 +14,15 @@ import sys
 import os
 
 
+print("Chutiyappa Started")
+
+#############################################INIT########################################
+
+
+#GCP
+import gcp
+gcp.download_db()
+
 #Configs
 
 
@@ -70,7 +79,7 @@ def metaData(update, context):
 def botDaddy(update,context):
 	print('From Bot Daddy')
 	print(update.message)
-	context.bot.send_photo(update.message.chat_id, CLOUD_GIF)
+	#context.bot.send_photo(update.message.chat_id, CLOUD_1)
 
 def updateMsg(context):
 	config=None
@@ -87,6 +96,7 @@ def updateMsg(context):
 	config["UPDATE_MSG"]=0
 	with open('DB/config.json', 'w') as outfile:
 			json.dump(config, outfile, indent = 1)
+	gcp.upload_file('DB/config.json','DB/config.json')
 
 
 
@@ -345,6 +355,7 @@ def writeProfile(profilesDb):
 	print('writeProfile')
 	with open('DB/SpotifyProfiles.json', 'w') as outfile:
 			json.dump(profilesDb, outfile, indent = 1)
+	gcp.upload_file("DB/SpotifyProfiles.json","DB/SpotifyProfiles.json")
 	
 
 
@@ -502,6 +513,8 @@ def writeInfo(infoDb) :
 	print('writeInfo')
 	with open('DB/info.json', 'w') as outfile:
 		json.dump(infoDb,outfile, indent = 1)
+	gcp.upload_file("DB/info.json","DB/info.json")
+
 
 
 #Welcomes new user
@@ -559,6 +572,8 @@ def writeSUlist(superusers):
 	print('writeSUlist')
 	with open('DB/superusers.json', 'w') as outfile:
 		json.dump(superusers,outfile, indent =1)
+	gcp.upload_file("DB/superusers.json","DB/superusers.json")
+
 
 def showSUlist(update,context):
 	print('showSUlist')
@@ -720,6 +735,8 @@ def writeInsultList(insultList):
 	print('\t', insultList)
 	with open('DB/InsultList.txt', 'wb') as outfile:
 			pickle.dump(insultList, outfile)
+	gcp.upload_file("DB/InsultList.txt","DB/InsultList.txt")
+
 
 def retard(update):
 	print('retard')
